@@ -2,7 +2,6 @@ var fs = require('fs');
 var del = require('del');
 var gulp = require('gulp');
 var streamqueue = require('streamqueue');
-var karma = require('karma').server;
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var conventionalRecommendedBump = require('conventional-recommended-bump');
