@@ -131,38 +131,15 @@ uis.controller('uiSelectCtrl',
         ctrl.activeIndex = 0;
       }
 
-      var container = $element.querySelectorAll('.ui-select-choices-content');
       var searchInput = $element.querySelectorAll('.ui-select-search');
-      if (ctrl.$animate && ctrl.$animate.on && ctrl.$animate.enabled(container[0])) {
-        var animateHandler = function(elem, phase) {
-          if (phase === 'start' && ctrl.items.length === 0) {
-            // Only focus input after the animation has finished
-            ctrl.$animate.off('removeClass', searchInput[0], animateHandler);
-            $timeout(function () {
-              ctrl.focusSearchInput(initSearchValue);
-            });
-          } else if (phase === 'close') {
-            // Only focus input after the animation has finished
-            ctrl.$animate.off('enter', container[0], animateHandler);
-            $timeout(function () {
-              ctrl.focusSearchInput(initSearchValue);
-            });
-          }
-        };
-
-        if (ctrl.items.length > 0) {
-          ctrl.$animate.on('enter', container[0], animateHandler);
-        } else {
-          ctrl.$animate.on('removeClass', searchInput[0], animateHandler);
+      searchInput[0].classList.remove('ng-hide');
+      searchInput[0].focus();
+      searchInput[0].value = initSearchValue || '';
+      $timeout(function () {
+        if(!ctrl.tagging.isActivated && ctrl.items.length > 1 && ctrl.open) {
+          _ensureHighlightVisible();
         }
-      } else {
-        $timeout(function () {
-          ctrl.focusSearchInput(initSearchValue);
-          if(!ctrl.tagging.isActivated && ctrl.items.length > 1 && ctrl.open) {
-            _ensureHighlightVisible();
-          }
-        });
-      }
+      });
     }
     else if (ctrl.open && !ctrl.searchEnabled) {
       // Close the selection if we don't have search enabled, and we click on the select again
