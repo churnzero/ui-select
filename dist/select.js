@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.19.8 - 2019-09-26T12:49:26.809Z
+ * Version: 0.19.8 - 2020-10-02T19:47:29.444Z
  * License: MIT
  */
 
@@ -2005,7 +2005,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
               items = items.slice(1,items.length);
               stashArr = stashArr.slice(1,stashArr.length);
             }
-            newItem = $select.search+' '+$select.taggingLabel;
+            newItem = ($select.search+' '+$select.taggingLabel).trim();
             if ( _findApproxDupe($select.selected, $select.search) > -1 ) {
               return;
             }
@@ -2078,7 +2078,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
             // handle the simple string version of tagging
             if ( $select.tagging.fct === undefined ) {
               // search the array for the match
-              if ( tempArr[i]+' '+$select.taggingLabel === needle ) {
+              if ( (tempArr[i]+' '+$select.taggingLabel).trim() === needle ) {
               dupeIndex = i;
               }
             // handle the object tagging implementation
