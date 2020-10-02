@@ -7,7 +7,7 @@
     "url": "git://github.com/angular-ui/ui-select.git"
   },
   "style": "dist/select.css",
-  "version": "0.19.8",
+  "version": "0.19.8-cz.2",
   "devDependencies": {
     "angular": "^1.2.18",
     "angular-mocks": "^1.2.18",
@@ -51,7 +51,7 @@
     "title-case": "^1.1.2"
   },
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
+    "forceResolutions": "npx npm-force-resolutions",
     "test": "gulp test"
   },
   "spm": {
